@@ -3,13 +3,21 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-
+import {AppContainer} from 'react-hot-loader'
+import {Provider} from 'react-redux'
+import store from './redux/store/index'
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Provider store={store}>
+    <AppContainer>
+      <App />
+    </AppContainer>
+  </Provider>,
   document.getElementById('root')
 );
+
+if (module.hot) {
+  module.hot.accept();
+}
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
