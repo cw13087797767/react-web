@@ -49,6 +49,8 @@ const cssRegex = /\.css$/;
 const cssModuleRegex = /\.module\.css$/;
 const sassRegex = /\.(scss|sass)$/;
 const sassModuleRegex = /\.module\.(scss|sass)$/;
+const lessRegex = /\.less$/;
+const lessModuleRegex = /\.module\.less$/;
 
 // This is the production and development configuration.
 // It is focused on developer experience, fast rebuilds, and a minimal bundle.
@@ -109,21 +111,35 @@ module.exports = function(webpackEnv) {
         },
       },
     ].filter(Boolean);
+    // if (preProcessor) {
+    //   loaders.push(
+    //     {
+    //       loader: require.resolve('resolve-url-loader'),
+    //       options: {
+    //         sourceMap: isEnvProduction && shouldUseSourceMap,
+    //       },
+    //     },
+    //     {
+    //       loader: require.resolve(preProcessor),
+    //       options: {
+    //         sourceMap: true,
+    //       },
+    //     }
+    //   );
+    // }
+    // return loaders;
     if (preProcessor) {
-      loaders.push(
-        {
-          loader: require.resolve('resolve-url-loader'),
+      let loader = require.resolve(preProcessor)
+      if (preProcessor === "less-loader") {
+        loader = {
+          loader,
           options: {
-            sourceMap: isEnvProduction && shouldUseSourceMap,
-          },
-        },
-        {
-          loader: require.resolve(preProcessor),
-          options: {
+            javascriptEnabled: true,
             sourceMap: true,
-          },
+          }
         }
-      );
+      }
+      loaders.push(loader);
     }
     return loaders;
   };
@@ -469,6 +485,27 @@ module.exports = function(webpackEnv) {
               // Remove this when webpack adds a warning or an error for this.
               // See https://github.com/webpack/webpack/issues/6571
               sideEffects: true,
+            },
+            {
+              test: lessRegex,
+              exclude: lessModuleRegex,
+              use: getStyleLoaders(
+                {
+                  importLoaders: 2
+                },
+                'less-loader'
+              ),
+            },
+            {
+              test: lessModuleRegex,
+              use: getStyleLoaders(
+                {
+                  importLoaders: 2,
+                  modules: true,
+                  getLocalIdent: getCSSModuleLocalIdent,
+                },
+                'less-loader'
+              ),
             },
             // Adds support for CSS Modules, but using SASS
             // using the extension .module.scss or .module.sass
