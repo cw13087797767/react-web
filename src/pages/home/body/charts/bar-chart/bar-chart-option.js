@@ -18,7 +18,7 @@
              show: true,
              type: 'slider',
              borderColor : 'transparent',
-             fillerColor: '#4981ec',
+             fillerColor: '#03F6FB',
              start: 60,
              end: 100,
              showDetail: false,
@@ -29,7 +29,7 @@
                     a 75,75 0 1,0 150,0
                     a 75,75 0 1,0 -150,0`,
              handleStyle: {
-                 color: '#4981ec',
+                 color: '#03F6FB',
              },
              height: 10,
              bottom: 5,
@@ -77,7 +77,7 @@
             name:'收益',
             data: data.y,
             itemStyle:{
-                color:'rgba(28, 142, 241, 1)',
+                color:'#c00fde',
                 barBorderRadius:5,
             },
             label:{

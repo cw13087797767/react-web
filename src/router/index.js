@@ -6,7 +6,7 @@ export default class RouteConfig extends React.Component {
         return (
             <BrowserRouter>
                 <Switch>
-                    <Route path="/" exact component={Home}/>
+                    <Route path="/" exact><h1>hello world</h1></Route>
                     <Route path="/home" component={Home}/>
                 </Switch>
             </BrowserRouter>

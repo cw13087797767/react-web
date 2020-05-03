@@ -12,94 +12,99 @@ function setOption(data, util) {
         },
         legend: {
             data: ['来电数量', '建单数量'],
-            right:10,
-            textStyle:{
-                color:'#eaeaea'
+            right: 10,
+            top: 10,
+            textStyle: {
+                color: '#eaeaea'
             }
         },
         xAxis: {
-           type: 'category',
-           data: data.x,
-           axisLine:{
-               show:true,
-               lineStyle:{
-                   color:'#23adbb80'
-               }
-           },
-           axisTick:{
-               show:false,
-           },
-           axisLabel: {
-               color:'#eaeaea'
-           },
-           
-       },
-       yAxis: {
-           type: 'value',
-           name:util,
-           nameTextStyle:{
-               color:'#eaeaea'
-           },
-           axisLine:{
-               show:false,
-           },
-           axisTick:{
-               show:false
-           },
-           axisLabel: {
-               color:'#eaeaea'
-           },
-           splitLine:{
-               lineStyle:{
-                   color:'#23adbb80'
-               }
-           }
-       },
-       series: [{
-           type: 'line',
-           name:'来电数量',
-           data: data.y[0],
-           smooth:true,
-           itemStyle:{
-               color:'rgba(28, 142, 241, 1)',
-           },
-           areaStyle:{
-               color:{
+            type: 'category',
+            data: data.x,
+            axisLine: {
+                show: true,
+                lineStyle: {
+                    color: '#23adbb80'
+                }
+            },
+            axisTick: {
+                show: false,
+            },
+            axisLabel: {
+                color: '#eaeaea'
+            },
+
+        },
+        yAxis: {
+            type: 'value',
+            name: util,
+            nameTextStyle: {
+                color: '#eaeaea'
+            },
+            axisLine: {
+                show: false,
+            },
+            axisTick: {
+                show: false
+            },
+            axisLabel: {
+                color: '#eaeaea'
+            },
+            splitLine: {
+                lineStyle: {
+                    color: '#23adbb80'
+                }
+            }
+        },
+        series: [{
+            type: 'line',
+            name: '来电数量',
+            data: data.y[0],
+            smooth: true,
+            itemStyle: {
+                color: 'rgba(232,220,56,0.3)',
+            },
+            areaStyle: {
+                color: {
                     type: 'linear',
                     x: 0,
                     y: 0,
                     x2: 0,
                     y2: 1,
                     colorStops: [{
-                        offset: 0, color: 'rgba(11,199,229,0.3)' // 0% 处的颜色
+                        offset: 0,
+                        color: 'rgba(232,220,56,0.7)' // 0% 处的颜色
                     }, {
-                        offset: 1, color: 'rgb(29,130,229)' // 100% 处的颜色
+                        offset: 1,
+                        color: 'rgba(128,121,30,1)' // 100% 处的颜色
                     }],
-               }
-           }
-       },{
-        type: 'line',
-        name:'建单数量',
-        data: data.y[1],
-        smooth:true,
-        itemStyle:{
-            color:'rgba(28, 142, 241, 1)',
-        },
-        areaStyle:{
-            color:{
-                 type: 'linear',
-                 x: 0,
-                 y: 0,
-                 x2: 0,
-                 y2: 1,
-                 colorStops: [{
-                    offset: 0, color: 'rgba(11,199,229,0.3)' // 0% 处的颜色
-                }, {
-                    offset: 1, color: 'rgb(29,130,229)' // 100% 处的颜色
-                }],
+                }
             }
-        }
-    }]
+        }, {
+            type: 'line',
+            name: '建单数量',
+            data: data.y[1],
+            smooth: true,
+            itemStyle: {
+                color: 'rgba(95,226,80,0.3)',
+            },
+            areaStyle: {
+                color: {
+                    type: 'linear',
+                    x: 0,
+                    y: 0,
+                    x2: 0,
+                    y2: 1,
+                    colorStops: [{
+                        offset: 0,
+                        color: 'rgba(95,226,80,0.7)' // 0% 处的颜色
+                    }, {
+                        offset: 1,
+                        color: 'rgba(64,134,57,1)' // 100% 处的颜色
+                    }],
+                }
+            }
+        }]
     }
     return option
 }

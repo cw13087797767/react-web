@@ -1,5 +1,4 @@
 import React from 'react'
-import "./index.less"
 import dayjs from 'dayjs'
 const weekdays = [
     '星期天',

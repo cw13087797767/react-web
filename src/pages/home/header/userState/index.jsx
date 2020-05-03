@@ -1,6 +1,5 @@
 import React from 'react'
 import {UserOutlined,LogoutOutlined} from '@ant-design/icons'
-import "./index.less";
 import { Tooltip } from 'antd';
 export default class HomeHeaderUserState extends React.Component{
     constructor(props){
