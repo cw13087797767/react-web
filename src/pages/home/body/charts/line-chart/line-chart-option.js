@@ -62,7 +62,7 @@ function setOption(data, util) {
             data: data.y[0],
             smooth: true,
             itemStyle: {
-                color: 'rgba(255,244,99,0.7)',
+                color: '#1c7fe1',
             },
             areaStyle: {
                 color: {
@@ -73,10 +73,10 @@ function setOption(data, util) {
                     y2: 1,
                     colorStops: [{
                         offset: 0,
-                        color: 'rgba(255,244,99,0.7)' // 0% 处的颜色
+                        color: '#1c7fe1' // 0% 处的颜色
                     }, {
                         offset: 1,
-                        color: '#E3B308' // 100% 处的颜色
+                        color: '#0c3d6d' // 100% 处的颜色
                     }],
                 }
             }
@@ -86,7 +86,7 @@ function setOption(data, util) {
             data: data.y[1],
             smooth: true,
             itemStyle: {
-                color: 'rgba(95,226,80,0.3)',
+                color: '#03F6FB',
             },
             areaStyle: {
                 color: {
@@ -97,10 +97,10 @@ function setOption(data, util) {
                     y2: 1,
                     colorStops: [{
                         offset: 0,
-                        color: 'rgba(95,226,80,0.7)' // 0% 处的颜色
+                        color: '#03F6FB' // 0% 处的颜色
                     }, {
                         offset: 1,
-                        color: 'rgba(64,134,57,1)' // 100% 处的颜色
+                        color: '#00a3a7' // 100% 处的颜色
                     }],
                 }
             }
