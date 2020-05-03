@@ -12,11 +12,15 @@ export default class BarChart extends React.Component {
     }
 
     componentDidMount() {
-        console.log(this.props)
-        this.initChart()
         window.addEventListener("resize",()=>{
             this.chartResize()
         })
+    }
+
+    componentDidUpdate(prevProps){
+        if (prevProps.chartsData !== this.props.chartsData || this.props.util !== this.props.util) {
+            this.initChart()
+        }
     }
 
     chartResize = () => {

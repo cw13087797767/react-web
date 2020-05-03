@@ -1,51 +1,25 @@
 import React from 'react';
 import LineChart from './charts/line-chart/line-chart'
+import homeApi from '../../../api/homeApi'
+import dayjs from 'dayjs'
 export default class DataAverge extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            chartsData: {
-                'x': [
-                    '01',
-                    '02',
-                    '03',
-                    '04',
-                    '05',
-                    '06',
-                    '07',
-                    '08',
-                    '09',
-                    '10',
-                ],
-                'y': [
-                    [
-                        0,
-                        29,
-                        51,
-                        79,
-                        38,
-                        26,
-                        42,
-                        66,
-                        18,
-                        0
-                    ],
-                    [
-                        0,
-                        15,
-                        28,
-                        56,
-                        18,
-                        7,
-                        35,
-                        64,
-                        13,
-                        0
-                    ]
-                ]
-            },
-            util: '个',
+            chartsData: {},
+            util: ''
         }
+    }
+
+    componentDidMount() {
+        homeApi.getDataAverage(dayjs().format("YYYY-MM")).then(res => {
+            if (res.data.code == 1) {
+                this.setState({
+                    chartsData:res.data.data.chartsData,
+                    util:res.data.data.util
+                })
+            }
+        })
     }
 
     render() {

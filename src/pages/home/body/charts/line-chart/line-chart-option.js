@@ -62,7 +62,7 @@ function setOption(data, util) {
             data: data.y[0],
             smooth: true,
             itemStyle: {
-                color: 'rgba(232,220,56,0.3)',
+                color: 'rgba(255,244,99,0.7)',
             },
             areaStyle: {
                 color: {
@@ -73,10 +73,10 @@ function setOption(data, util) {
                     y2: 1,
                     colorStops: [{
                         offset: 0,
-                        color: 'rgba(232,220,56,0.7)' // 0% 处的颜色
+                        color: 'rgba(255,244,99,0.7)' // 0% 处的颜色
                     }, {
                         offset: 1,
-                        color: 'rgba(128,121,30,1)' // 100% 处的颜色
+                        color: '#E3B308' // 100% 处的颜色
                     }],
                 }
             }

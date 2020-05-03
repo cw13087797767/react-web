@@ -77,7 +77,7 @@
             name:'收益',
             data: data.y,
             itemStyle:{
-                color:'#c00fde',
+                color:'#03F6FB',
                 barBorderRadius:5,
             },
             label:{

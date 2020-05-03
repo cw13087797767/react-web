@@ -19,6 +19,12 @@ export default class PieChart extends React.Component {
         })
     }
 
+    componentDidUpdate(preProps){
+        if (preProps.charId !== this.props.charId || preProps.chartData !== this.props.chartData) {
+            this.initChart()
+        }
+    }
+
     chartResize = () => {
         if (this.state.timer) {
             clearTimeout(this.state.timer)

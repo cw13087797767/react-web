@@ -1,41 +1,29 @@
 import React from 'react';
 import BarChart from './charts/bar-chart/bar-chart'
+import homeApi from '../../../api/homeApi'
+import axios from 'axios'
 export default class QuarterlyEarnings extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            chartsData: {
-                'x': [
-                    '01',
-                    '02',
-                    '03',
-                    '04',
-                    '05',
-                    '06',
-                    '07',
-                    '08',
-                    '09',
-                    '10',
-                    '11',
-                    '12',
-                ],
-                'y': [
-                    1.6,
-                    1.7,
-                    1.8,
-                    1.9,
-                    2,
-                    2.1,
-                    2.1,
-                    2.2,
-                    2.3,
-                    2.4,
-                    2.5,
-                    2.6,
-                ]
-            },
-            util: '亿元',
+            chartsData: {},
+            util: '',
         }
+    }
+
+    componentDidMount(){
+        this.getQuarterlyEarnings()
+    }
+
+    getQuarterlyEarnings = () =>{
+        homeApi.getQuarterlyEarning(2020).then(res =>{
+            if (res.data.code == 1) {
+                this.setState({
+                    chartsData:res.data.data.chartsData,
+                    util:res.data.data.util
+                })
+            }
+        })
     }
 
     render() {

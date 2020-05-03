@@ -1,19 +1,23 @@
 import React from 'react'
+import homeApi from '../../../api/homeApi'
+import dayjs from 'dayjs'
 
 export default class MonthRecord extends React.Component{
     constructor(props){
         super(props)
         this.state = {
-            monthData:[
-                {name:'来电数量',value:5142},
-                {name:'电话解决量',value:5142},
-                {name:'创建工单',value:1324},
-                {name:'已完成工单',value:351},
-                {name:'单日最高量',value:665},
-                {name:'客户投诉量',value:12},
-                {name:'次月目标客户量',value:8848},
-            ]
+            monthData:[]
         }
+    }
+
+    componentDidMount(){
+        homeApi.getMonthRecord(dayjs().format('YYYY-MM')).then(res => {
+            if (res.data.code == 1) {
+                this.setState({
+                    monthData:res.data.data.monthData
+                })
+            }
+        })
     }
 
     render(){

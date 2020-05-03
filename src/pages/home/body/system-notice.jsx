@@ -1,15 +1,21 @@
 import React from 'react'
-
+import homeApi from '../../../api/homeApi'
 export default class SystemNotice extends React.Component{
     constructor(props){
         super(props)
         this.state = {
-            notice:{
-                title:'管理平台使用通知',
-                content:'各位使用人员，本平台基于 react + react-router + redux + antd + echarts 搭建的一个前端项目。意在学习前端技术，丰富个人知识体系，拓展前端知识。该项目持续优化中。。。',
-                time:'2020-05-01'
-            }
+            notice:{}
         }
+    }
+
+    componentDidMount(){
+        homeApi.getSystemNotice().then(res => {
+            if (res.data.code == 1) {
+                this.setState({
+                    notice:res.data.data.notice
+                })
+            }
+        })
     }
 
     render(){

@@ -1,54 +1,23 @@
 import React from 'react'
-import { Tag } from 'antd';
+import { Tag } from 'antd'
+import homeApi from '../../../api/homeApi'
+import dayjs from 'dayjs'
 export default class ActiveDetail extends React.Component{
     constructor(props){
         super(props)
         this.state = {
-            detailList:[
-                {
-                    time:'12:00',
-                    type:'其他故障',
-                    userName:'张三',
-                    state:1,
-                    msg:'长安街103号/建单项目二'
-                },
-                {
-                    time:'12:00',
-                    type:'其他故障',
-                    userName:'张三',
-                    state:0,
-                    msg:'长安街103号/建单项目二'
-                },
-                {
-                    time:'12:00',
-                    type:'其他故障',
-                    userName:'张三',
-                    state:1,
-                    msg:'长安街103号/建单项目二'
-                },
-                {
-                    time:'12:00',
-                    type:'其他故障',
-                    userName:'张三',
-                    state:1,
-                    msg:'长安街103号/建单项目二'
-                },
-                {
-                    time:'12:00',
-                    type:'其他故障',
-                    userName:'张三',
-                    state:0,
-                    msg:'长安街103号/建单项目二'
-                },
-                {
-                    time:'12:00',
-                    type:'其他故障',
-                    userName:'张三',
-                    state:0,
-                    msg:'长安街103号/建单项目二'
-                }
-            ]
+            detailList:[]
         }
+    }
+
+    componentDidMount(){
+        homeApi.getActiveDetail(dayjs().format("YYYY-MM-DD")).then(res => {
+            if (res.data.code == 1) {
+                this.setState({
+                    detailList:res.data.data.detailList
+                })
+            }
+        })
     }
 
     render(){

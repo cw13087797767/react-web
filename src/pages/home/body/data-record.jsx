@@ -1,21 +1,27 @@
 import React from 'react'
-
+import homeApi from '../../../api/homeApi'
 export default class DataRecord extends React.Component{
     constructor(props){
         super(props)
         this.state = {
-            accurateData:[
-                {name:'今日来电',value:32,type:1},
-                {name:'今日建单',value:6,type:1},
-                {name:'待完成',value:2,type:2},
-                {name:'今日完成',value:12,type:1}
-            ],
-            averageData:[
-                {name:'电话建单率',value:74,util:'%'},
-                {name:'工单完成率',value:90,util:'%'},
-                {name:'平均处理时长',value:2,util:'min'},
-            ]
+            accurateData:[],
+            averageData:[]
         }
+    }
+
+    componentDidMount(){
+        this.getData()
+    }
+
+    getData = () => {
+        homeApi.getDataRecord(2020).then(res => {
+            if (res.data.code == 1) {
+                this.setState({
+                    accurateData:res.data.data.accurateData,
+                    averageData:res.data.data.averageData,
+                })
+            }
+        })
     }
 
     render(){

@@ -1,5 +1,7 @@
 import React from 'react'
 import PieChart from './charts/pie-chart/pie-chart'
+import homeApi from '../../../api/homeApi'
+import dayjs from 'dayjs'
 export default class RecordToday extends React.Component {
     constructor(props) {
         super(props)
@@ -13,21 +15,13 @@ export default class RecordToday extends React.Component {
     }
 
     getChartDataList = () => {
-        let chartDataList = [
-            [
-                {name:'已核查',value:6},
-                {name:'待核查',value:13}
-            ],
-            [
-                { name: '已接电话', value: 8 },
-                { name: '未接电话', value: 2 },
-                { name: '已处理问题', value: 5 },
-                { name: '未处理问题', value: 1 },
-                { name: '其他', value: 3 },
-            ]
-        ]
-        this.setState({
-            chartDataList
+        homeApi.getRecordToday(dayjs().format("YYYY-MM-DD")).then(res => {
+            
+            if ( res.data.code == 1) {
+                this.setState({
+                    chartDataList:res.data.data.chartDataList
+                })
+            }
         })
     }
 

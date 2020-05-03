@@ -12,11 +12,16 @@ export default class LineChart extends React.Component {
     }
 
     componentDidMount() {
-        console.log(this.props)
         this.initChart()
         window.addEventListener("resize",()=>{
             this.chartResize()
         })
+    }
+
+    componentDidUpdate(preProps){
+        if (preProps.util !== this.props.util || JSON.stringify(preProps.chartsData) !== JSON.stringify(this.props.chartsData)) {
+            this.initChart()
+        }
     }
 
     chartResize = () => {
@@ -38,12 +43,14 @@ export default class LineChart extends React.Component {
 
     initChart = () => {
         let chartId = document.querySelector('#LineChart')
-        let option = setOption(this.props.chartsData, this.props.util)
-        let chart = Echarts.init(chartId)
-        chart.setOption(option)
-        this.setState({
-            chart: chart
-        })
+        if (JSON.stringify(this.props.chartsData) !=='{}') {            
+            let option = setOption(this.props.chartsData, this.props.util)
+            let chart = Echarts.init(chartId)
+            chart.setOption(option)
+            this.setState({
+                chart: chart
+            })
+        }
     }
     render() {
         return (
