@@ -1,23 +1,20 @@
 import React from 'react'
-import {UserOutlined,LogoutOutlined} from '@ant-design/icons'
+import { UserOutlined, LogoutOutlined } from '@ant-design/icons'
 import { Tooltip } from 'antd';
-export default class HomeHeaderUserState extends React.Component{
-    constructor(props){
+import { connect } from 'react-redux'
+class HomeHeaderUserState extends React.Component {
+    constructor(props) {
         super(props)
-        this.state = {
-            userInfo:{
-                userName:"管理员"
-            }
-        }
     }
 
-    render(){
-        return(
+    render() {
+        console.log(this.props.userReducer)
+        return (
             <div className="user-state">
                 <p>
-                    <Tooltip placement="bottom" title={this.state.userInfo.userName}>
+                    <Tooltip placement="bottom" title={'当前登录账号为：' + this.props.userReducer.userAccount}>
                         <UserOutlined className="user-state-icon" />
-                        <span className="username">{this.state.userInfo.userName}</span>
+                        <span className="username">{this.props.userReducer.userName}</span>
                     </Tooltip>
                     <Tooltip placement="bottom" title="退出当前登录">
                         <LogoutOutlined rotate={270} className="user-state-icon" />
@@ -27,3 +24,9 @@ export default class HomeHeaderUserState extends React.Component{
         )
     }
 }
+
+const mapStateToProps = store => {
+    return store
+}
+
+export default connect(mapStateToProps)(HomeHeaderUserState)
