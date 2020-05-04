@@ -43,7 +43,8 @@ class Login extends React.Component {
                     userAccount:this.state.userAccount
                 }
                 this.props.set_userInfo(userInfo)
-                this.props.history.push('/home')
+                console.log(this.props.history)
+                this.props.history.replace('/home')
             } else {
                 this.setState({
                     isLogin: !this.state.isLogin
