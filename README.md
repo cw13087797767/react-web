@@ -1,2 +1,2 @@
 # react-web
-react + redux + react-router + antd
+react + redux + react-router + antd + echarts
